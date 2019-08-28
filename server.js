@@ -9,6 +9,7 @@ var apiRoutes         = require('./routes/api.js');
 var fccTestingRoutes  = require('./routes/fcctesting.js');
 var runner            = require('./test-runner');
 var helmet            = require('helmet'); //xss, nosniff, etc.
+require('dotenv').config();
 
 var app = express();
 app.use(helmet());
