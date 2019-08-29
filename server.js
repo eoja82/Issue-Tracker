@@ -27,7 +27,7 @@ mongoose.connect(process.env.DATABASE, {useNewUrlParser: true},
     else { console.log("Connected to db!") };
 });
 //Sample front-end
-app.route('/:project/')
+app.route('/projectX/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/issue.html');
   });
