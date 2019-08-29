@@ -32,6 +32,11 @@ app.route('/projectX/')
     res.sendFile(process.cwd() + '/views/issue.html');
   });
 
+app.route('/search/')
+  .get(function (req, res) {
+    res.sendFile(process.cwd() + '/views/search.html')
+  });  
+
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {

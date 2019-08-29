@@ -20,9 +20,9 @@
       <a href="/projectX" id="allIssues" class="btn btn-info btn-block" role="button">View All ProjectX Issues</a>
       <h3 id="newIssue">Submit A New Issue</h3>
       <form id="testForm" class="border">
-        <input type="text" name="issue_title" placeholder="*Title"><br>
-        <textarea type="text" name="issue_text" placeholder="*Text"></textarea><br>
-        <input type="text" name="created_by" placeholder="*Created by"><br>
+        <input type="text" name="issue_title" placeholder="*Title" required><br>
+        <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br>
+        <input type="text" name="created_by" placeholder="*Created by" required><br>
         <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
         <input type="text" name="status_text" placeholder="(opt)Status text"><br>
         <button type="submit" class="btn btn-primary btn-block">Submit Issue</button>
@@ -30,7 +30,7 @@
       <h3 id="updateIssue">Update An Issue</h3>
         <p>(Change any or all to update issue on the _id supplied)</p>
       <form id="testForm2" class="border">
-        <input type="text" name="_id" placeholder="*_id" required=''><br>
+        <input type="text" name="_id" placeholder="*_id" required><br>
         <input type="text" name="issue_title" placeholder="(opt)Title"><br>
         <textarea type="text" name="issue_text" placeholder="(opt)Text" ></textarea><br>
         <input type="text" name="created_by" placeholder="(opt)Created by"><br>
@@ -42,7 +42,7 @@
       </form><br>
       <h3 id="deleteIssue">Delete An Issue</h3>
       <form id="testForm3" class="border">
-        <input type="text" name="_id" placeholder="_id"><br>
+        <input type="text" name="_id" placeholder="_id" required><br>
         <button type="submit" class="btn btn-danger btn-block">Delete Issue</button>
       </form>
       <code id='jsonResult'></code>
