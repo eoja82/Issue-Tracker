@@ -18,7 +18,7 @@
       <!--Bootstrap button links-->
       <a href="/#newIssue" class="btn btn-primary issueBtn" role="button">Submit A New Issue</a>
       <a href="/#updateIssue" class="btn btn-primary issueBtn" role="button">Update An Issue</a>
-      <a id="showSearch" onclick="showExamples()" class="btn btn-primary issueBtn" role="button" style="color: white;">Search Issues</a>
+      <a id="showSearch" onclick="showSearch()" class="btn btn-primary issueBtn" role="button" style="color: white;">Search Issues</a>
       <a href="/#deleteIssue" class="btn btn-danger issueBtn" role="button">Delete An Issue</a>
     </div>
     <div id="searchBox" style="display: none;">
@@ -28,10 +28,11 @@
         <input type="text" name="created_by" placeholder="Created By">
         <input type="text" name="assigned_to" placeholder="Assigned To">
         <input type="text" name="status_text" placeholder="Status">
-        <button type="submit" class="btn btn-primary btn-block">Search</button>
+        <button type="submit" class="btn btn-primary btn-block submit">Search</button>
       </form>
     </div>
     <div class="center">
+      <div id="searchResults"></div>
       <div id='issueDisplay'></div>
     </div>  
       <hr style='margin: 50px; margin-top: 200px'>
@@ -62,8 +63,8 @@
                 '<p>'+ele.issue_text+'</p>',
                 '<p>'+ele.status_text+'</p>',
                 '<br>',
-                '<p class="id"><b>Created by:</b> '+ele.created_by+'  <b>Assigned to:</b> '+ele.assigned_to,
-                '<p class="id"><b>Created on:</b> '+ele.created_on+'  <b>Last updated:</b> '+ele.updated_on,
+                '<p class="id"><b>Created by:</b> <br>'+ele.created_by+' <br> <b>Assigned to:</b><br> '+ele.assigned_to,
+                '<p class="id"><b>Created on:</b> '+ele.created_on+' <br> <b>Last updated:</b> '+ele.updated_on,
                 '<br><a href="#" class="closeIssue" id="'+ele._id+'">close?</a> <a href="#" class="deleteIssue" id="'+ele._id+'">delete?</a>',
                 '</div>'
                 
@@ -105,6 +106,38 @@
           });
           e.preventDefault();
         });
+        $('#searchBox').on('click', '.submit', function(e) {
+          /*var url = "/api/issues/"+currentProject;*/
+          $.ajax({
+            type: "GET",
+            /*url: url,*/
+            success: function(data) {
+              var issues= [];
+              data.forEach(function(ele) {
+              console.log(ele);
+              var openstatus;
+              (ele.open) ? openstatus = 'open' : openstatus = 'closed';
+              var single = [
+                '<div class="issue '+openstatus+'">',
+                '<p class="id">id: '+ele._id+'</p>',
+                '<h3>'+ele.issue_title+' -  ('+openstatus+')</h3>',
+                '<br>',
+                '<p>'+ele.issue_text+'</p>',
+                '<p>'+ele.status_text+'</p>',
+                '<br>',
+                '<p class="id"><b>Created by:</b> '+ele.created_by+'  <b>Assigned to:</b> '+ele.assigned_to,
+                '<p class="id"><b>Created on:</b> '+ele.created_on+'  <b>Last updated:</b> '+ele.updated_on,
+                '<br><a href="#" class="closeIssue" id="'+ele._id+'">close?</a> <a href="#" class="deleteIssue" id="'+ele._id+'">delete?</a>',
+                '</div>'
+                
+              ];
+              issues.push(single.join(''));
+            });
+            $('#searchResults').html(issues.join(''));
+            }
+          });
+          e.preventDefault();
+        })
       });
    </script>
    <script src="/public/client.js"></script>
