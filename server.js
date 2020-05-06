@@ -27,15 +27,15 @@ mongoose.connect(process.env.DATABASE, {useNewUrlParser: true},
     else { console.log("Connected to db!") };
 });
 //Sample front-end
-app.route('/projectX/')
+app.route('/Project-X/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/issue.html');
   });
-
-app.route('/search/')
+//Future feature to add
+ /*app.route('/search/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/search.html')
-  });  
+  }); */
 
 //Index page (static HTML)
 app.route('/')
