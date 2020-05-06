@@ -1,53 +1,85 @@
+/* This file has css for index.html and issue.html.
+   Comments will indicate to which file the css refers. */
+
+/* css for index.html and issue.html */
 * {
   margin: 0px;
   padding: 0px;
 }
-
 body {
-  padding: 10px;
-  background-color: rgb(177, 220, 255);
+  background-color: rgb(225, 225, 225);
+  margin-bottom: 1.5rem;
 }
 
+/* css for index.html */
 header {
   text-align: center;
+  margin: 2rem;
 }
-#testui, #searchBox {
+header h1 {
+  font-weight: bold;
+  font-size: 4rem;
+}
+#testui {
   display: flex;
   flex-direction: column;
   align-items: center;
-} 
-#testForm, #testForm2, #testForm3, #searchForm {
+}
+#allIssues {
+  margin-bottom: 1rem;
+}
+.modifyIssue {
+  background-color: #cecece;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 5px;
   width: 60%;
-  margin-bottom: 10px;
-  background-color: white;
 }
-@media only screen and (max-width: 400px) {
-  #testForm, #testForm2, #testForm3 {
-    width: 90%;
-  }
-  #allIssues {
-    width: 90%;
-  }
-}
-
 input, textarea {
   width: 100%;
+  margin-bottom: .75rem;
 }
-
-.btn-info {
-  width: 60%;
-}
-button {
-  margin-top: 3px;
-}
-.issue {
+#newIssue, #updateIssue, #deleteIssue {
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+  padding-bottom: 1.5rem;
+}
+#newIssue {
+  color: #007bff;
+}
+#updateIssue {
+  color: #17a2b8;
+}
+#deleteIssue {
+  color: #dc3545;
+}
+@media only screen and (max-width: 440px) {
+  header h1 {
+    font-weight: bold;
+    font-size: 3rem;
+  }
+  #newIssue, #updateIssue, #deleteIssue {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+  .modifyIssue {
+    padding: 1.75rem;
+    margin: 1.75rem;
+    border-radius: 5px;
+    width: 95%;
+  }
+  .modifyIssue p {
+    font-size: .75rem;
+  }
 }
 
+/* css for issue.html */
 .center {
   text-align: center;
 }
-
 #issueDisplay {
   display: flex;
   flex-direction: row;
@@ -55,8 +87,8 @@ button {
   text-align: center;
   justify-content: center;
 }
-
 .issue {
+  text-align: center;
   margin: 20px;
   padding: 5px;
   width: 200px;
@@ -65,27 +97,23 @@ button {
 #issueButtons {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 .issueBtn {
   margin: 10px 20px;
+}
+.closed {
+  background-color: lightgray;
+}
+.open {
+  background-color: white;
+}
+.id {
+  font-size: 10.5px;
 }
 @media only screen and (max-width: 400px) {
   #issueButtons {
     flex-direction: column;
     margin: 3px 0px;
   }
-}
-.closed {
-  background-color: lightgrey;
-}
-
-.open {
-  background-color: white;
-}
-
-.id {
-  font-size: 10.5px;
-}
-#allIssues {
-  margin: 10px 0px;
 }

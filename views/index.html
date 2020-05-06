@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProjectX Issue Tracker</title>
+    <title>Project-X Issue Tracker</title>
     <meta name="description" content="A cool thing made with HyperDev">
     <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -13,40 +13,49 @@
   <body>
     <header>
       <h1>
-        ProjectX Issue Tracker
+        Project-X Issue Tracker
       </h1>
     </header>
-    <div id='testui'>
-      <a href="/projectX" id="allIssues" class="btn btn-info btn-block" role="button">View All ProjectX Issues</a>
-      <h3 id="newIssue">Submit A New Issue</h3>
-      <form id="testForm" class="border">
-        <input type="text" name="issue_title" placeholder="*Title" required><br>
-        <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br>
-        <input type="text" name="created_by" placeholder="*Created by" required><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text"><br>
-        <button type="submit" class="btn btn-primary btn-block">Submit Issue</button>
-      </form><br>
-      <h3 id="updateIssue">Update An Issue</h3>
-        <p>(Change any or all to update the issue on the _id supplied)</p>
-      <form id="testForm2" class="border">
-        <input type="text" name="_id" placeholder="*_id" required><br>
-        <input type="text" name="issue_title" placeholder="(opt)Title"><br>
-        <textarea type="text" name="issue_text" placeholder="(opt)Text" ></textarea><br>
-        <input type="text" name="created_by" placeholder="(opt)Created by"><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text"><br>
-        <label for="close">Check to close issue</label>
-        <input type="checkbox" name="close" id="close" value="false" style="width: auto;">
-        <button type="submit" class="btn btn-primary btn-block">Submit Update</button>
-      </form><br>
-      <h3 id="deleteIssue">Delete An Issue</h3>
-      <form id="testForm3" class="border">
-        <input type="text" name="_id" placeholder="_id" required><br>
-        <button type="submit" class="btn btn-danger btn-block">Delete Issue</button>
-      </form>
-      <code id='jsonResult'></code>
-      
+    <div id="testui">
+      <div id="allIssues">
+        <a href="/Project-X" class="btn btn-success btn-lg" role="button">View All Project-X Issues</a>
+      </div>
+      <div class="modifyIssue">
+        <h3 id="newIssue">Submit A New Issue</h3>
+        <form id="testForm">
+          <input type="text" name="issue_title" placeholder="*Title"><br>
+          <textarea type="text" name="issue_text" placeholder="*Text"></textarea><br>
+          <input type="text" name="created_by" placeholder="*Created by"><br>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
+          <input type="text" name="status_text" placeholder="(opt)Status text"><br>
+          <button type="submit" class="btn btn-primary btn-block">Submit Issue</button>
+        </form>
+        <code id="jsonResult"></code>
+      </div>
+      <div class="modifyIssue">
+        <h3 id="updateIssue">Update An Issue</h3>
+        <p>(Change one or more fields to update an issue by _id)</p>
+        <form id="testForm2">
+          <input type="text" name="_id" placeholder="*_id" required=""><br>
+          <input type="text" name="issue_title" placeholder="(opt)Title"><br>
+          <textarea type="text" name="issue_text" placeholder="(opt)Text" ></textarea><br>
+          <input type="text" name="created_by" placeholder="(opt)Created by"><br>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"><br>
+          <input type="text" name="status_text" placeholder="(opt)Status text"><br>
+          <label for="close">Check to close issue</label>
+          <input type="checkbox" name="close" id="close" value="false" style="width: auto;">
+          <button type="submit" class="btn btn-info btn-block">Update Issue</button>
+        </form>
+        <code id="jsonResult2"></code>
+      </div>
+      <div class="modifyIssue">
+        <h3 id="deleteIssue">Delete An Issue</h3>
+        <form id="testForm3">
+          <input type="text" name="_id" placeholder="_id"><br>
+          <button type="submit" class="btn btn-danger btn-block">Delete Issue</button>
+        </form>
+        <code id="jsonResult3"></code>
+      </div>
     </div>
    
     <!-- Your web-app is https, so your scripts need to be too -->
@@ -72,7 +81,7 @@
             type: 'put',
             data: $('#testForm2').serialize(),
             success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
+              $('#jsonResult2').text(JSON.stringify(data));
             }
           });
           e.preventDefault();
@@ -83,7 +92,7 @@
             type: 'delete',
             data: $('#testForm3').serialize(),
             success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
+              $('#jsonResult3').text(JSON.stringify(data));
             }
           });
           e.preventDefault();

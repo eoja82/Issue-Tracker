@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProjectX Issues</title>
+    <title>Project-X All Issues</title>
     <meta name="description" content="A cool thing made with HyperDev">
     <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -12,37 +12,25 @@
   </head>
   <body>
     <header>
-      <h1 id='projectTitle'></h1>
+      <h1 id="projectTitle"></h1>
     </header>
     <div id="issueButtons">
       <!--Bootstrap button links-->
       <a href="/#newIssue" class="btn btn-primary issueBtn" role="button">Submit A New Issue</a>
-      <a href="/#updateIssue" class="btn btn-primary issueBtn" role="button">Update An Issue</a>
-      <a id="showSearch" onclick="showSearch()" class="btn btn-primary issueBtn" role="button" style="color: white;">Search Issues</a>
+      <a href="/#updateIssue" class="btn btn-info issueBtn" role="button">Update An Issue</a>
       <a href="/#deleteIssue" class="btn btn-danger issueBtn" role="button">Delete An Issue</a>
     </div>
-    <div id="searchBox" style="display: none;">
-      <form id="searchForm">
-        <input type="text" name="_id" placeholder="_id">
-        <input type="text" name="issue_title" placeholder="Title">
-        <input type="text" name="created_by" placeholder="Created By">
-        <input type="text" name="assigned_to" placeholder="Assigned To">
-        <input type="text" name="status_text" placeholder="Status">
-        <button type="submit" class="btn btn-primary btn-block submit">Search</button>
-      </form>
-    </div>
     <div class="center">
-      <div id="searchResults"></div>
-      <div id='issueDisplay'></div>
+      <div id="issueDisplay"></div>
     </div>  
-      <hr style='margin: 50px; margin-top: 200px'>
+    <hr style="margin: 50px; margin-top: 200px">
     
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
     <script>
       $(function() {
-        var currentProject = window.location.pathname.replace(/\//g, "");;
+        var currentProject = window.location.pathname.replace(/\//g, "");
         var url = "/api/issues/"+currentProject;
         $('#projectTitle').text('All issues for: '+currentProject)
         $.ajax({
@@ -52,7 +40,6 @@
           {
             var issues= [];
             data.forEach(function(ele) {
-              console.log(ele);
               var openstatus;
               (ele.open) ? openstatus = 'open' : openstatus = 'closed';
               var single = [
@@ -75,7 +62,7 @@
           }
         });
         
-        /*$('#newIssue').submit(function(e){
+        $('#newIssue').submit(function(e){
           e.preventDefault();
           $(this).attr('action', "/api/issues/" + currentProject);
           $.ajax({
@@ -84,7 +71,7 @@
             data: $(this).serialize(),
             success: function(data) { window.location.reload(true); }
           });
-        });*/
+        });
         
         $('#issueDisplay').on('click','.closeIssue', function(e) {
           var url = "/api/issues/"+currentProject;
@@ -106,40 +93,7 @@
           });
           e.preventDefault();
         });
-        $('#searchBox').on('click', '.submit', function(e) {
-          /*var url = "/api/issues/"+currentProject;*/
-          $.ajax({
-            type: "GET",
-            /*url: url,*/
-            success: function(data) {
-              var issues= [];
-              data.forEach(function(ele) {
-              console.log(ele);
-              var openstatus;
-              (ele.open) ? openstatus = 'open' : openstatus = 'closed';
-              var single = [
-                '<div class="issue '+openstatus+'">',
-                '<p class="id">id: '+ele._id+'</p>',
-                '<h3>'+ele.issue_title+' -  ('+openstatus+')</h3>',
-                '<br>',
-                '<p>'+ele.issue_text+'</p>',
-                '<p>'+ele.status_text+'</p>',
-                '<br>',
-                '<p class="id"><b>Created by:</b> '+ele.created_by+'  <b>Assigned to:</b> '+ele.assigned_to,
-                '<p class="id"><b>Created on:</b> '+ele.created_on+'  <b>Last updated:</b> '+ele.updated_on,
-                '<br><a href="#" class="closeIssue" id="'+ele._id+'">close?</a> <a href="#" class="deleteIssue" id="'+ele._id+'">delete?</a>',
-                '</div>'
-                
-              ];
-              issues.push(single.join(''));
-            });
-            $('#searchResults').html(issues.join(''));
-            }
-          });
-          e.preventDefault();
-        })
       });
    </script>
-   <script src="/public/client.js"></script>
   </body>
 </html>
